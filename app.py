@@ -10,8 +10,12 @@ extractor = URLExtract()
 
 model = pickle.load(open('model.pkl', 'rb'))
 
-@app.route('/', methods=['POST'])
+@app.route('/', methods=['GET'])
 def index():
+    return { "message": "App is working!" }
+
+@app.route('/', methods=['POST'])
+def predictEnergy():
     data_form = request.get_json(force=True)
     return predict(data_form)
 
